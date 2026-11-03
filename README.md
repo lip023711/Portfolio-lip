@@ -7,3 +7,17 @@ GitHub Pages：Deploy from a branch，main，/(root)。不需要构建命令，�
 入口 index.html。personal-intro/embedded.html 与 assets/ 为嵌入网站和素材，须完整保留。访问时按需加载高清帧和视频，首次打开请等待素材加载。
 
 站内编辑仅在当前浏览器保存，导出不会自动更新GitHub。更新公开版本需要提交并推送仓库。
+## Cloudflare Pages
+
+原始 index.html 含内嵌图片，超过Cloudflare Pages单文件25MiB。构建脚本在发布时按原字节拆出图片到dist/deck-assets，并验证可无损还原原HTML；根目录原版仍供GitHub Pages使用。
+
+- Repository: lip023711/Portfolio-lip
+- Production branch: main
+- Framework preset: None
+- Build command: node build-cloudflare.cjs
+- Build output directory: dist
+- Root directory: 留空（仓库根目录）
+- Environment variables: 不需要
+- Domain: 使用Cloudflare自动分配的pages.dev免费网址
+
+仅发布dist目录。不要把Cloudflare输出目录设置成仓库根目录，否则大HTML仍会触发25MiB限制。
